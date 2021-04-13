@@ -28,51 +28,57 @@ app.get('/reserve', (req, res) => res.sendFile(path.join(__dirname, 'reserve.htm
 
 
 app.post("/api/tables", function(req, res) {
-            // req.body hosts is equal to the JSON post sent from the user
-            // This works because of our body parsing middleware
-            var newTable = req.body;
+    // req.body hosts is equal to the JSON post sent from the user
+    // This works because of our body parsing middleware
+    var newTable = req.body;
 
-            // Using a RegEx Pattern to remove spaces from newCharacter
-            // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-            newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
+    // Using a RegEx Pattern to remove spaces from newCharacter
+    // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+    newTable.routeName = newTable.name.replace(/\s+/g, "").toLowerCase();
 
-            // Displays all characters
-            // app.get('/api/characters', (req, res) => res.json(characters));
+    console.log(newTable);
 
-            // Displays a single character, or returns false
-            // app.get('/api/characters/:character', (req, res) => {
-            //     const chosen = req.params.character;
+    tables.push(newTable);
 
-            //     console.log(chosen);
+    res.json(newTable);
+});
+// Displays all characters
+// app.get('/api/characters', (req, res) => res.json(characters));
 
-            //     /* Check each character routeName and see if the same as "chosen"
-            //      If the statement is true, send the character back as JSON,
-            //      otherwise tell the user no character was found */
+// Displays a single character, or returns false
+// app.get('/api/characters/:character', (req, res) => {
+//     const chosen = req.params.character;
 
-            //     for (let i = 0; i < characters.length; i++) {
-            //         if (chosen === characters[i].routeName) {
-            //             return res.json(characters[i]);
-            //         }
-            //     }
+//     console.log(chosen);
 
-            //     return res.json(false);
-            // });
+//     /* Check each character routeName and see if the same as "chosen"
+//      If the statement is true, send the character back as JSON,
+//      otherwise tell the user no character was found */
 
-            // Create New Characters - takes in JSON input
-            // app.post('/api/characters', (req, res) => {
-            //     // req.body hosts is equal to the JSON post sent from the user
-            //     // This works because of our body parsing middleware
-            //     const newReservation = req.body;
+//     for (let i = 0; i < characters.length; i++) {
+//         if (chosen === characters[i].routeName) {
+//             return res.json(characters[i]);
+//         }
+//     }
 
-            // //     // Using a RegEx Pattern to remove spaces from newCharacter
-            // //     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
-            //     newReservation.routeName = newReservation.name.replace(/\s+/g, '').toLowerCase();
-            //     console.log(newReservation);
+//     return res.json(false);
+// });
 
-            //     characters.push(newCharacter);
-            //     res.json(newCharacter);
-            // });
+// Create New Characters - takes in JSON input
+// app.post('/api/characters', (req, res) => {
+//     // req.body hosts is equal to the JSON post sent from the user
+//     // This works because of our body parsing middleware
+//     const newReservation = req.body;
 
-            // Starts the server to begin listening
+// //     // Using a RegEx Pattern to remove spaces from newCharacter
+// //     // You can read more about RegEx Patterns later https://www.regexbuddy.com/regex.html
+//     newReservation.routeName = newReservation.name.replace(/\s+/g, '').toLowerCase();
+//     console.log(newReservation);
 
-            app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
+//     characters.push(newCharacter);
+//     res.json(newCharacter);
+// });
+
+// Starts the server to begin listening
+
+app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
